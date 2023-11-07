@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import Styles from './NavBarMenu.module.css'
-import logo from '../../assets/logo.svg'
-import empleados from '../../assets/empleados.svg'
+import estudiantes from '../../assets/estudiantes.svg'
 import usuario from '../../assets/usuario.svg'
-import delegado from '../../assets/delegado.svg'
+import nuevoUsuario from '../../assets/new.svg'
+import profilePhoto from '../../assets/photo.svg'
 
 export const NavBarMenu = () => {
 
@@ -33,12 +33,16 @@ export const NavBarMenu = () => {
             }
         }
         >
-            <img className={Styles.logo} src={logo} alt="logo" />
+            <div className={Styles.profilePhoto}>
+                <img className={Styles.profilePhoto} src={profilePhoto} alt="profilePhoto" />
+                <p className={Styles.userName}> Nombre Nombre </p>
+                <p className={Styles.userType}> ADMIN</p>
+            </div>
 
             <div className={Styles.buttons}> 
-                <button> <img src={empleados} alt="empleados" /> Empleados </button>
+                <button> <img src={nuevoUsuario} alt="nuevoUsuario" /> Nuevo Registro </button>
+                <button> <img src={estudiantes} alt="beneficiarios" /> Beneficiarios </button>
                 <button> <img src={usuario} alt="usuario" /> Usuarios </button>
-                <button> <img src={delegado} alt="delegado" /> Delegados </button>
             </div>
         </div>
     )

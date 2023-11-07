@@ -1,12 +1,6 @@
-.logo{
-    height: 32px;
-    width: 64px;
-    margin: 0 auto;
-    display: block;
-}
 .nav {
     padding: 16px 8px 40px 8px;
-    background-color: #ffffff;
+    background-color: #f1f1f1;
     height: 100vh;
     width: 80px;  
     box-shadow: 0px 0px 15px 0px rgba(34, 56, 67, 0.24);
@@ -16,16 +10,33 @@
     flex-direction: column;
 }
 .nav button {
-    background-color: #D8E2DC;
+    background-color: #B1A4C3;
     border: none;
     height: 32px;
     width: 50%;
     border-radius: 8px;
     display: block; /* Para ocupar toda la anchura disponible */
     overflow: hidden;
+    transition: all ease-in-out .3s;
+}
+.nav .profilePhoto{
+    transition:all ease-in-out .6s;
+    width: 100%;
+    height: auto;
+}
+.nav__active .profilePhoto{
+    transition: all ease-in-out .3s;
+    height: 200px;
+}
+.nav .userName{
+    display: none;
+}
+
+.nav .userType{
+    display: none;
 }
 .nav__active {
-    background-color: #ffff;
+    background-color: #f1f1f1;
     height: 100vh;
     width: 240px;  
     z-index: 2;
@@ -37,7 +48,7 @@
     flex-direction: column;
 }
     button {
-        background-color: #D8E2DC;
+        background-color: #B1A4C3;
         border: none;
         color: #ffff;
         height: 32px;
@@ -64,4 +75,19 @@
 }
 .buttons button{ 
     margin-bottom: 24px;
+}
+.profilePhoto{
+    
+    text-align: center;
+}
+.userName{
+    margin-top: 24px;
+    font-size: 1.5rem;
+    font-weight: 'bold';
+    color: black;
+}
+.userType{
+    font-size: 1rem;
+    font-weight: 300;
+    color: #6D6875;
 }

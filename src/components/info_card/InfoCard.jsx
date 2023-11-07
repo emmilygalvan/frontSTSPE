@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Styles from './InfoCard.module.css';
 import calendario from '../../assets/calendar.svg'
 import drop from '../../assets/dropdown.svg'
-import municipiosPorEstado from './municipios'; 
+import { estados } from './estados';
+import municipiosPorEstado from './municipios';
+import back from '../../assets/back.svg'
 
 export const InfoCard = () => {
 
@@ -25,17 +27,23 @@ export const InfoCard = () => {
   };
   
   const plantelesPorDependencia = {
-    COBAQ: ["Municipio1", "Municipio2", "Municipio3"],
-    CECYTEQ: ["Municipio4", "Municipio5", "Municipio6"],
+    COBAQ: ["DIRECCION GENERAL", "EMSAD 12", "EMSAD11", "EMSAD13", "EMSAD14", "EMSAD15", "EMSAD18", "EMSAD19", "EMSAD20", "EMSAD21", "EMSAD22", "EMSAD23", "EMSAD24", "EMSAD25", "EMSAD26", "EMSAD27", "EMSAD28", "EMSAD3", "EMSAD30", "EMSAD31", "EMSAD32", "EMSAD4", "EMSAD6", "EMSAD7", "EMSAD8", "EMSAD9", "PLANTEL 1", "PLANTEL 2", "PLANTEL 3", "PLANTEL 4", "PLANTEL 5", "PLANTEL 6", "PLANTEL 7", "PLANTEL 8", "PLANTEL 9", "PLANTEL 10", "PLANTEL 11", "PLANTEL 12", "PLANTEL 13", "PLANTEL 14", "PLANTEL 15", "PLANTEL 16", "PLANTEL 17", "PLANTEL 18", "PLANTEL 19", "PLANTEL 20", "PLANTEL 21", "PLANTEL 22", "PLANTEL 23", "PLANTEL 24", "PLANTEL 25", "PLANTEL 26", "PLANTEL 27", "PLANTEL 28", "PLANTEL 29", "PLANTEL 30", "PLANTEL 31", "PLANTEL 32", "PLANTEL 33", "PLANTEL 34"],
+    CONALEP: ["AMEALCO", "QUERETARO", "SAN JUAN DEL RIO"],
   };
 
   return (
-    <div className={Styles.datosEmpleado}>
-      
+    <form className={Styles.datosEmpleado}>
+      <div className={Styles.screenName}>
+        <img src={back} alt="back" className={Styles.back}/>
+        <h1>Registro Empleado</h1>
+      </div>
+
       <h1 className={Styles.title}>Datos Personales</h1>
 
-      <form className={Styles.datosPersonales}>
-        <box className={Styles.columna}>
+      <div className={Styles.datosPersonales}>
+
+        <div className={Styles.columna}>
+          
           <label>
             Nombre <br/>
             <input type="text" name="nombre"/>
@@ -62,9 +70,10 @@ export const InfoCard = () => {
             <input type="text" name="nss"/>
           </label>
 
-        </box>
+        </div>
 
-        <box className={Styles.columna}>
+        <div className={Styles.columna}>
+
           <label>
             Apellido Paterno<br/>
             <input type="text" name="apellidoP"/>
@@ -72,43 +81,14 @@ export const InfoCard = () => {
           
           <label>
             Lugar de Nacimiento<br/>
-            <select placeholder="Buscar" name="lugarNacimiento">
+            <select name="lugarNacimiento">
               <option disabled selected value="">Selecciona una opción</option>
-              <option value="aguascalientes">Aguascalientes</option>
-              <option value="bajacalifornia">Baja California</option>
-              <option value="bajasur">Baja California Sur</option>
-              <option value="campeche">Campeche</option>
-              <option value="chiapas">Chiapas</option>
-              <option value="chihuahua">Chihuahua</option>
-              <option value="coahuila">Coahuila de Zaragoza</option>
-              <option value="colima">Colima</option>
-              <option value="cdmx">CDMX</option>
-              <option value="durango">Durango</option>
-              <option value="edomex">Estado de México</option>
-              <option value="guanajuato">Guanajuato</option>
-              <option value="guerrero">Guerrero</option>
-              <option value="hidalgo">Hidalgo</option>
-              <option value="jalisco">Jalisco</option>
-              <option value="michoacan">Michoacán</option>
-              <option value="morelos">Morelos</option>
-              <option value="nayarit">Nayarit</option>
-              <option value="nuevoleon">Nuevo León</option>
-              <option value="oaxaca">Oaxaca</option>
-              <option value="puebla">Puebla</option>
-              <option value="queretaro">Querétaro</option>
-              <option value="quintanaroo">Quintana Roo</option>
-              <option value="sanluis">San Luis Potosí</option>
-              <option value="sinaloa">Sinaloa</option>
-              <option value="sonora">Sonora</option>
-              <option value="tabasco">Tabasco</option>
-              <option value="tamaulipas">Tamaulipas</option>
-              <option value="tlaxcala">Tlaxcala</option>
-              <option value="veracruz">Veracruz</option>
-              <option value="yucatan">Yucatán</option>                
-              <option value="zacatecas">Zacatecas</option>
+              {Object.entries(estados).map(([value, label], index) => (
+              <option key={index} value={value}>{label}</option>
+              ))}
             </select>
           </label>
-        
+
           <label>
             CURP <br/>
             <input type="text" name="curp"/>
@@ -129,9 +109,9 @@ export const InfoCard = () => {
             </select>
           </label>
 
-        </box>
+        </div>
 
-        <box className={Styles.columna}>
+        <div className={Styles.columna}>
           
           <label>
             Apellido Materno<br/>
@@ -161,8 +141,10 @@ export const InfoCard = () => {
               <option value="viudo">Viudo</option>
             </select>
           </label>
-        </box>
-      </form>
+
+        </div>
+
+      </div>
 
       <div className={Styles.uploadFoto}>
         <text>Foto del Empleado</text>
@@ -170,8 +152,11 @@ export const InfoCard = () => {
       </div>
 
       <h1 className={Styles.title}>Contacto</h1>
-      <form className={Styles.datosPersonales}>
-        <box className={Styles.columna}>
+
+      <div className={Styles.contacto}>
+
+        <div className={Styles.columna}>
+
           <label>
             Calle <br/>
             <input type="text" name="calle"/>
@@ -186,60 +171,41 @@ export const InfoCard = () => {
             Teléfono <br/>
             <input type="tel" name="telefono"/>
           </label>
-        </box>
 
-        <box className={Styles.columna}>
-          <label>
-            Apellido Paterno<br/>
-            <input type="text" name="apellidoP"/>
+        </div>
+
+        <div className={Styles.columna}>
+
+          <label className={Styles.numeroie}>
+            <label>
+              Num. Interior<br/>
+              <input type='text' name="numeroInterior"/> 
+            </label>
+            <label>
+              Num. Exterior<br/>
+              <input type='text' name="numeroExterior"/> 
+            </label>
           </label>
           
           <label>
             Estado<br/>
-            <select name="estado" value={selectedState} onChange={handleStateChange}>
-              <option disabled selected value="">Selecciona una opción</option>
-              <option value="aguascalientes">Aguascalientes</option>
-              <option value="bajacalifornia">Baja California</option>
-              <option value="bajasur">Baja California Sur</option>
-              <option value="campeche">Campeche</option>
-              <option value="chiapas">Chiapas</option>
-              <option value="chihuahua">Chihuahua</option>
-              <option value="coahuila">Coahuila de Zaragoza</option>
-              <option value="colima">Colima</option>
-              <option value="cdmx">CDMX</option>
-              <option value="durango">Durango</option>
-              <option value="edomex">Estado de México</option>
-              <option value="guanajuato">Guanajuato</option>
-              <option value="guerrero">Guerrero</option>
-              <option value="hidalgo">Hidalgo</option>
-              <option value="jalisco">Jalisco</option>
-              <option value="michoacan">Michoacán</option>
-              <option value="morelos">Morelos</option>
-              <option value="nayarit">Nayarit</option>
-              <option value="nuevoleon">Nuevo León</option>
-              <option value="oaxaca">Oaxaca</option>
-              <option value="puebla">Puebla</option>
-              <option value="queretaro">Querétaro</option>
-              <option value="quintanaroo">Quintana Roo</option>
-              <option value="sanluis">San Luis Potosí</option>
-              <option value="sinaloa">Sinaloa</option>
-              <option value="sonora">Sonora</option>
-              <option value="tabasco">Tabasco</option>
-              <option value="tamaulipas">Tamaulipas</option>
-              <option value="tlaxcala">Tlaxcala</option>
-              <option value="veracruz">Veracruz</option>
-              <option value="yucatan">Yucatán</option>                
-              <option value="zacatecas">Zacatecas</option>
-            </select>
+              <select name="estado" value={selectedState} onChange={handleStateChange}>
+                <option disabled selected value="">Selecciona una opción</option>
+                {Object.entries(estados).map(([value, label], index) => (
+                  <option key={index} value={value}>{label}</option>
+                ))}
+              </select>
           </label>
         
           <label>
             Celular <br/>
             <input type="tel" name="celular"/>
           </label>
-        </box>
 
-        <box className={Styles.columna}>
+        </div>
+
+        <div className={Styles.columna}>
+          
           <label>
             Codigo Postal<br/>
               <input type="number" name="codigoPostal"/>
@@ -248,26 +214,28 @@ export const InfoCard = () => {
           <label>
             Municipio <br/>
             <select name="municipio" value={selectedMunicipality} onChange={(event) => setSelectedMunicipality(event.target.value)}>
-            <option disabled selected value="">Selecciona una opción</option>
-            
-            {municipiosPorEstado[selectedState]?.map((municipio, index) => (
+              <option disabled selected value="">Selecciona una opción</option>
+              {municipiosPorEstado[selectedState]?.map((municipio, index) => (
               <option key={index} value={municipio}>{municipio}</option>
-            ))}
-          </select>
-
+              ))}
+            </select>
           </label>
 
           <label>
             Correo<br/>
               <input type="email" name="mail"/>
           </label>
-        </box>
-      </form>
+
+        </div>
+
+      </div>
 
       <h1 className={Styles.title}>Información del Empleo</h1>
-      <form className={Styles.datosPersonales}>
-        <box className={Styles.columna}>
-          
+
+      <div className={Styles.infoEmpleado}>
+        
+        <div className={Styles.columna}>
+
           <label>
             Tipo de Dependencia<br/>
             <select name="tipoDependencia">
@@ -279,22 +247,39 @@ export const InfoCard = () => {
             </select>
           </label>
 
-         
-
-          <text>Nacionalidad</text>
-          <label className={Styles.checks}>
-            <input type='radio' name="nacionalidad" value="mexicana"/> 
-            <p>Mexicana</p>
-            <input type='radio' name="nacionalidad" value="extranjera"/>
-            <p>Extranjera</p>
+          <label>
+            Fecha de Ingreso a STSPE<br/>
+            <input 
+              type="date" 
+              name="fechaIngreso"
+            />
           </label>
 
           <label>
-            NSS <br/>
-            <input type="text" name="nss"/>
+            Puesto<br/>
+            <select name="puesto">
+              <option disabled selected value="">Selecciona una opción</option>
+              <option value="Empleado">Descentralizada</option>
+              <option value="Empleado">Poder Ejecutivo</option>
+              <option value="Empleado">Poder Judicial</option>
+              <option value="Empleado">Poder Legislativo</option>
+            </select>
           </label>
-        </box>
-        <box className={Styles.columna}>
+
+          <label>
+            Region<br/>
+            <select name="municipioQueretaro" value={selectedMunicipality} onChange={(event) => setSelectedMunicipality(event.target.value)}>
+              <option disabled selected value="">Selecciona una opción</option>
+              {municipiosPorEstado.queretaro.map((municipio, index) => (
+              <option key={index} value={municipio}>{municipio}</option>
+              ))}
+            </select>
+          </label> 
+
+        </div>
+
+        <div className={Styles.columna}>
+
           <label className={Styles.dependencia}>
             Dependencia<br/>
             <select name="dependencia" value={selectedDependency} onChange={handleDependencyChange}>
@@ -306,7 +291,7 @@ export const InfoCard = () => {
               <option value="COBAQ">COBAQ</option>
               <option value="5">COLEGIO DE ESTUDIOS CIENTIFICOS Y TECNOLOGICOS DEL ESTADO</option>
               <option value="6">COMISION ESTATAL DEL SISTEMA PENITENCIARIO DE QUERETARO</option>
-              <option value="7">CONALEP</option>
+              <option value="CONALEP">CONALEP</option>
               <option value="8">DIRECCIÓN DE DESARROLLO INTEGRAL DE LA FAMILIA</option>
               <option value="9">DIRECCIÓN DEL REGISTRO PUBLICO DE LA PROPIEDAD</option>
               <option value="10">FISCALIA GENERAL DEL ESTADO</option>
@@ -381,106 +366,63 @@ export const InfoCard = () => {
           </label>
           
           <label>
-            Lugar de Nacimiento<br/>
-            <select placeholder="Buscar" name="lugarNacimiento">
-              <option disabled selected value="">Selecciona una opción</option>
-              <option value="aguascalientes">Aguascalientes</option>
-              <option value="bajacalifornia">Baja California</option>
-              <option value="bajasur">Baja California Sur</option>
-              <option value="campeche">Campeche</option>
-              <option value="chiapas">Chiapas</option>
-              <option value="chihuahua">Chihuahua</option>
-              <option value="coahuila">Coahuila de Zaragoza</option>
-              <option value="colima">Colima</option>
-              <option value="cdmx">CDMX</option>
-              <option value="durango">Durango</option>
-              <option value="edomex">Estado de México</option>
-              <option value="guanajuato">Guanajuato</option>
-              <option value="guerrero">Guerrero</option>
-              <option value="hidalgo">Hidalgo</option>
-              <option value="jalisco">Jalisco</option>
-              <option value="michoacan">Michoacán</option>
-              <option value="morelos">Morelos</option>
-              <option value="nayarit">Nayarit</option>
-              <option value="nuevoleon">Nuevo León</option>
-              <option value="oaxaca">Oaxaca</option>
-              <option value="puebla">Puebla</option>
-              <option value="queretaro">Querétaro</option>
-              <option value="quintanaroo">Quintana Roo</option>
-              <option value="sanluis">San Luis Potosí</option>
-              <option value="sinaloa">Sinaloa</option>
-              <option value="sonora">Sonora</option>
-              <option value="tabasco">Tabasco</option>
-              <option value="tamaulipas">Tamaulipas</option>
-              <option value="tlaxcala">Tlaxcala</option>
-              <option value="veracruz">Veracruz</option>
-              <option value="yucatan">Yucatán</option>                
-              <option value="zacatecas">Zacatecas</option>
-            </select>
+            Fecha de Solicitud<br/>
+            <input 
+              type="date" 
+              name="fechaSolicitud"
+            />
           </label>
         
           <label>
-            CURP <br/>
-            <input type="text" name="curp"/>
+            Hora de Entrada <br/>
+            <input type="time" name="horaEntrada"/>
           </label>
-
+          
           <label>
-            Escolaridad<br/>
-            <select name="escolaridad">
+            Estatus<br/>
+            <select name="estatus">
               <option disabled selected value="">Selecciona una opción</option>
-              <option value="primaria">Primaria</option>
-              <option value="secundaria">Secundaria</option>
-              <option value="preparatoria">Preparatoria</option>
-              <option value="carreraTecnica">Carrera Tecnica</option>
-              <option value="tsu">Técnico Superior Universitario</option>
-              <option value="licenciatura">Licenciatura</option>
-              <option value="maestria">Maestria</option>
-              <option value="doctorado">Doctorado</option>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+              <option value="licencia">Licencia</option>
+              <option value="baja">Baja</option>
+              <option value="expulsado">Expulsado</option>
             </select>
           </label>
 
-        </box>
+        </div>
 
-        <box className={Styles.columna}>
-
+        <div className={Styles.columna}>
+          
           <label>
             Plantel <br/>
             <select name="plantel" value={selectedPlantel} onChange={(event) => setSelectedPlantel(event.target.value)}>
               <option disabled selected value="">Selecciona una opción</option>
-              
               {plantelesPorDependencia[selectedDependency]?.map((plantel, index) => (
                 <option key={index} value={plantel}>{plantel}</option>
               ))}
             </select>
           </label>
 
-
-          <text>Genero</text>
-          <label className={Styles.checks}>
-            <input type='radio' name="genero" value="masculino"/> 
-            <p>Masculino</p>
-            <input type='radio' name="genero" value="femenino"/>
-            <p>Femenino</p>
+          <label>
+            Sueldo <br/>
+            <input type="number" name="sueldo"/>
           </label>
 
           <label>
-            RFC <br/>
-            <input type="text" name="curp"/>
+            Hora de Salida <br/>
+            <input type="time" name="horaSalida"/>
           </label>
 
-          <label>
-            Estado Civil<br/>
-            <select name="estadodoCivil">
-              <option disabled selected value="">Selecciona una opción</option>
-              <option value="soltero">Soltero</option>
-              <option value="casado">Casado</option>
-              <option value="divorciado">Divorciado</option>
-              <option value="viudo">Viudo</option>
-            </select>
+          <label className={Styles.empty}>
           </label>
-        </box>
-      </form>
 
-    </div>
+        </div>
+
+      </div>
+
+      <input type="submit" value="Guardar Empleado"/>
+
+    </form>
   )
 }

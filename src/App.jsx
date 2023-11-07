@@ -1,4 +1,4 @@
-import { Header, InfoCard, NavBarMenu } from "."
+import { Header, InfoCard, NavBarMenu, Register } from "."
 
 
 
@@ -13,7 +13,7 @@ export const App = () => {
         >
             <Header />
             <NavBarMenu /> 
-            <InfoCard/>
+            <Register/>
         </div>
     )
 }
